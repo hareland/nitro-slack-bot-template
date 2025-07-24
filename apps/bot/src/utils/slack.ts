@@ -21,7 +21,7 @@ export const createSlackApp = (env: Env) => {
       // async beforeInstallation({ request }) {
       //   logger.info('before-install-', request);
       // },
-      async afterInstallation({ installation, env }) {
+      async afterInstallation({ installation }) {
         //So that we can let our API know this workspace exist.
         await apiFetch('/api/slack/install', {
           method: 'POST',
@@ -30,9 +30,6 @@ export const createSlackApp = (env: Env) => {
             enterpriseId: installation.enterprise_id,
             teamId: installation.team_id,
             userId: installation.user_id,
-          },
-          onRequestError(err) {
-            logger.error(err);
           },
         });
 

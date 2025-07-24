@@ -14,6 +14,12 @@ features:
       description: Pings
       usage_hint: Test
       should_escape: true
+    - command: /whoami
+      url: https://nor-tour-local-benz.trycloudflare.com/slack/events
+      description: Replies with some information about you.
+      usage_hint: /whoami
+      should_escape: True
+
 oauth_config:
   redirect_urls:
     - https://nor-tour-local-benz.trycloudflare.com/slack
@@ -43,10 +49,12 @@ settings:
     bot_events:
       - app_home_opened
       - app_mention
+      - app_uninstalled
       - message.channels
       - message.groups
       - message.im
       - reaction_added
+      - subteam_members_changed
   interactivity:
     is_enabled: true
     request_url: https://nor-tour-local-benz.trycloudflare.com/slack/events
