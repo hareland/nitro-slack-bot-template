@@ -1,0 +1,22 @@
+{
+  "name": "nitro-slack-bot-template-api",
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  },
+  "keep_vars": true,
+  "send_metrics": false,
+  "account_id": "1ae3e27896cd862e451186548970feb6",
+  "compatibility_flags": ["nodejs_als", "nodejs_compat", "no_nodejs_compat_v2"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "migrations_dir": "./server/db/migrations",
+      "database_name": "nitro-slack-bot-template-prod",
+      "database_id": "5f1484e1-b5a1-4962-8edb-ced6c38c0443"
+    }
+  ]
+}

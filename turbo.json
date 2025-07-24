@@ -1,0 +1,17 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "build": {
+      "env": ["NITRO_*", "NUXT_"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.local"]
+    },
+    "prepare": {},
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "docker:build": {
+      "cache": false
+    }
+  }
+}

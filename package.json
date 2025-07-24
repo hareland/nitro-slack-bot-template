@@ -1,0 +1,16 @@
+{
+  "name": "nitro-slack-bot-template",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "prepare": "turbo run prepare",
+    "prettier": "prettier --write .",
+    "docker:build": "turbo run docker:build",
+    "docker:build:websocket-proxy": "pnpm --filter websocket-proxy docker:build"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.2"
+  },
+  "packageManager": "pnpm@9.13.1+sha256.dd98691b127b5d2c4d0605b594e98ec0bcbe5fba86358184de706c3312a4e2ee"
+}

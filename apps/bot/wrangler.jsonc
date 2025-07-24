@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nitro-slack-bot-template-bot",
+  "compatibility_date": "2025-07-19",
+  "main": "src/index.ts",
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  },
+  "keep_vars": true,
+  "send_metrics": false,
+  "account_id": "1ae3e27896cd862e451186548970feb6",
+  "compatibility_flags": ["nodejs_als", "nodejs_compat", "no_nodejs_compat_v2"],
+  "kv_namespaces": [
+    {
+      "binding": "SLACK_INSTALLATIONS",
+      "id": "a5d2b945f3a2423c8d7ef367fcb982fa",
+      "preview_id": "ac9b00f7164b43298d86286fd712d8f6"
+    },
+    {
+      "binding": "SLACK_OAUTH_STATES",
+      "id": "c900ef7231c04b3ba92cae751c04a19b",
+      "preview_id": "4dd7e2a7a7c641e5bbb30c8b8acffe2e"
+    }
+  ]
+}

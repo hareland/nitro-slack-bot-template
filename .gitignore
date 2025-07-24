@@ -1,0 +1,16 @@
+.turbo
+node_modules
+.DS_Store
+.next
+.nuxt
+.out
+.pnp
+output
+dist
+.yarn
+.vercel
+.vscode
+.nitro
+.env
+.env.*
+!**/.env.example

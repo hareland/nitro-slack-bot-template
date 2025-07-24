@@ -1,0 +1,33 @@
+{
+  "name": "api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "build": "nitro build",
+    "dev": "nitro dev",
+    "prepare": "nitro prepare",
+    "preview": "node .output/server/index.mjs",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "npx wrangler d1 migrations apply nitro-slack-bot-template-prod",
+    "db:clear": "rm -rf .wrangler/state/v3/d1",
+    "db:seed": "npx wrangler d1 execute nitro-slack-bot-template-prod",
+    "db:reset-local": "pnpm db:clear && pnpm db:migrate --local"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.6.2",
+    "drizzle-kit": "^0.31.4",
+    "nitro-cloudflare-dev": "^0.2.2",
+    "nitropack": "latest",
+    "wrangler": "^4.25.1"
+  },
+  "dependencies": {
+    "h3": "^1.15.3",
+    "drizzle-orm": "^0.44.2",
+    "h3-zod": "^0.5.3",
+    "luxon": "^3.6.1",
+    "zod": "^4.0.5",
+    "@nitrotool/jwt": "^0.0.6",
+    "@nitrotool/errors": "^0.0.6"
+  }
+}

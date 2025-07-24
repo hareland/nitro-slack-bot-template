@@ -1,0 +1,32 @@
+{
+  "name": "bot",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "dist/index.mjs",
+  "type": "module",
+  "scripts": {
+    "build": "unbuild .",
+    "dev": "wrangler dev",
+    "get-scopes": "node ./scripts/yamlScopesToString.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@nitrotool/jwt": "^0.0.6",
+    "consola": "^3.4.2",
+    "ofetch": "^1.4.1",
+    "slack-cloudflare-workers": "^1.3.6"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250719.0",
+    "wrangler": "^4.25.0",
+    "yaml": "^2.8.0"
+  }
+}
