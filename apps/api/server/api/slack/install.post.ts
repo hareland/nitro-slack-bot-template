@@ -17,7 +17,7 @@ export default defineBotEventHandler(async (event) => {
     .values({
       id: teamId,
       //todo: import the name somehow?
-      name: 'unsupported',
+      name: '[loading]',
       enterpriseId: isEnterpriseInstall ? enterpriseId : null,
       installedBy: userId,
     })
