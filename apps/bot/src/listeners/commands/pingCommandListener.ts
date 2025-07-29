@@ -1,4 +1,4 @@
-import { SlashCommandLazyHandler } from 'slack-cloudflare-workers';
+import type { SlashCommandLazyHandler } from 'slack-cloudflare-workers';
 
 const pingCommandListener: SlashCommandLazyHandler = async ({
   context,

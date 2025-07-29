@@ -1,4 +1,4 @@
-import { SlashCommandLazyHandler } from 'slack-cloudflare-workers';
+import type { SlashCommandLazyHandler } from 'slack-cloudflare-workers';
 
 const whoAmIListener: SlashCommandLazyHandler = async ({
   context,

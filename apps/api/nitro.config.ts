@@ -5,7 +5,10 @@ export default defineNitroConfig({
   compatibilityDate: '2025-07-21',
   runtimeConfig: {
     jwtSecret: 'some-very-secret-string-longer-than-32-chars',
-    slackSigningSecret: 'secret',
+    slack: {
+      signingSecret: 'secret',
+      botToken: '',
+    },
   },
   experimental: {
     asyncContext: true,

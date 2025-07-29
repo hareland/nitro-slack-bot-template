@@ -1,6 +1,12 @@
 import { $fetch } from 'ofetch';
 import { encodeJwtRaw } from '@nitrotool/jwt';
 import { env } from 'cloudflare:workers';
+import type {
+  AnyHomeTabBlock,
+  AnyMessageBlock,
+  Block,
+} from 'slack-cloudflare-workers';
+import type { SupportedEventType } from 'slack-edge';
 
 export const apiFetch = $fetch.create({
   baseURL: env.API_URL || 'http://localhost:3001',
@@ -11,6 +17,19 @@ export const apiFetch = $fetch.create({
     );
   },
 });
+
+export const fetchBlocksForEvent = async <B extends Block = AnyHomeTabBlock>(
+  eventName: SupportedEventType,
+  context: {
+    userId?: string;
+    channelId?: string;
+  },
+) => {
+  return await apiFetch<B[]>(`/api/slack/blocks/${eventName}`, {
+    method: 'POST',
+    body: context,
+  });
+};
 
 export const requestToUrl = (request: Request) => new URL(request.url);
 

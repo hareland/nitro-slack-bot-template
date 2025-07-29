@@ -13,3 +13,6 @@ type MessagePayload =
 
 export const messageIsFromThread = (payload: MessagePayload) =>
   payload.thread_ts !== undefined;
+
+export const messageIsDirectMessage = (payload: MessagePayload) =>
+  payload.channel.startsWith('D') || payload.channel_type === 'im';

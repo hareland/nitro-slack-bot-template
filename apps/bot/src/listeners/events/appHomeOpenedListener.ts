@@ -2,24 +2,20 @@ import type {
   AnyHomeTabBlock,
   EventLazyHandler,
 } from 'slack-cloudflare-workers';
-import { apiFetch } from '../../utils/request';
+import { fetchBlocksForEvent } from '../../utils/request';
 
-const appHomeOpenedListener: EventLazyHandler<'app_home_opened'> = async ({
+const eventName = 'app_home_opened';
+
+const appHomeOpenedListener: EventLazyHandler<typeof eventName> = async ({
   context,
 }) => {
   const blocks: AnyHomeTabBlock[] = [];
 
   //
-  const apiBlocks = await apiFetch<AnyHomeTabBlock[]>(
-    '/api/slack/blocks/app_home_opened',
-    {
-      method: 'POST',
-      body: { userId: context.userId, channelId: context.channelId },
-    },
-  );
+  const homeBlocks = await fetchBlocksForEvent(eventName, context);
 
   // Could probably put this outside a try/catch and then finally, after the request.
-  if (!apiBlocks || apiBlocks.length === 0) {
+  if (!homeBlocks || homeBlocks.length === 0) {
     blocks.push({
       type: 'section',
       text: {
@@ -28,7 +24,7 @@ const appHomeOpenedListener: EventLazyHandler<'app_home_opened'> = async ({
       },
     });
   } else {
-    blocks.push(...apiBlocks);
+    blocks.push(...homeBlocks);
   }
 
   await context.client.views.publish({

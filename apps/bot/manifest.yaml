@@ -2,7 +2,7 @@ display_information:
   name: Duty Schedule
 features:
   app_home:
-    home_tab_enabled: false
+    home_tab_enabled: true
     messages_tab_enabled: true
     messages_tab_read_only_enabled: false
   bot_user:
@@ -10,19 +10,19 @@ features:
     always_online: true
   slash_commands:
     - command: /ping
-      url: https://nor-tour-local-benz.trycloudflare.com/slack/events
+      url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
       description: Pings
       usage_hint: Test
       should_escape: true
     - command: /whoami
-      url: https://nor-tour-local-benz.trycloudflare.com/slack/events
+      url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
       description: Replies with some information about you.
       usage_hint: /whoami
-      should_escape: True
+      should_escape: true
 
 oauth_config:
   redirect_urls:
-    - https://nor-tour-local-benz.trycloudflare.com/slack
+    - https://brand-junior-irc-migration.trycloudflare.com/slack/oauth_redirect
   scopes:
     user:
       - team:read
@@ -45,7 +45,7 @@ oauth_config:
       - team:read
 settings:
   event_subscriptions:
-    request_url: https://nor-tour-local-benz.trycloudflare.com/slack/events
+    request_url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
     bot_events:
       - app_home_opened
       - app_mention
@@ -57,7 +57,7 @@ settings:
       - subteam_members_changed
   interactivity:
     is_enabled: true
-    request_url: https://nor-tour-local-benz.trycloudflare.com/slack/events
+    request_url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
   org_deploy_enabled: false
   socket_mode_enabled: false
   token_rotation_enabled: false
