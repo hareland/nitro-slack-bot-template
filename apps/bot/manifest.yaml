@@ -10,19 +10,24 @@ features:
     always_online: true
   slash_commands:
     - command: /ping
-      url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
+      url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
       description: Pings
       usage_hint: Test
       should_escape: true
     - command: /whoami
-      url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
+      url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
       description: Replies with some information about you.
       usage_hint: /whoami
+      should_escape: true
+    - command: /bot-admin
+      url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
+      description: Administration this bot
+      usage_hint: "[users] [list|import] [?: @user]"
       should_escape: true
 
 oauth_config:
   redirect_urls:
-    - https://brand-junior-irc-migration.trycloudflare.com/slack/oauth_redirect
+    - https://cornell-attendance-jack-developments.trycloudflare.com/slack/oauth_redirect
   scopes:
     user:
       - team:read
@@ -45,7 +50,7 @@ oauth_config:
       - team:read
 settings:
   event_subscriptions:
-    request_url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
+    request_url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
     bot_events:
       - app_home_opened
       - app_mention
@@ -55,9 +60,10 @@ settings:
       - message.im
       - reaction_added
       - subteam_members_changed
+      - team_rename
   interactivity:
     is_enabled: true
-    request_url: https://brand-junior-irc-migration.trycloudflare.com/slack/events
+    request_url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
   org_deploy_enabled: false
   socket_mode_enabled: false
   token_rotation_enabled: false

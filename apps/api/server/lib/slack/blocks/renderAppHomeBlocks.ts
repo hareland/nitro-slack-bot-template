@@ -35,26 +35,39 @@ export const renderAppHomeBlocks: BlockRenderer<
       },
     },
     {
+      block_id: 'select_channel_block_id',
+      type: 'input',
+      label: {
+        type: 'plain_text',
+        text: 'Select a channel to message the result to',
+      },
+      element: {
+        type: 'conversations_select',
+        action_id: 'sample_dropdown_id',
+        response_url_enabled: true,
+      },
+    },
+    {
       type: 'actions',
       elements: [
         {
           type: 'button',
           text: {
             type: 'plain_text',
-            text: '📅 View Schedule',
+            text: '📅 View Details',
             emoji: true,
           },
-          action_id: 'view_schedule',
+          action_id: 'modal_my_details', //defined in apps/bot/src/listeners/constants.ts
         },
-        {
-          type: 'button',
-          text: {
-            type: 'plain_text',
-            text: '🔄 Switch Duty',
-            emoji: true,
-          },
-          action_id: 'switch_duty',
-        },
+        // {
+        //   type: 'button',
+        //   text: {
+        //     type: 'plain_text',
+        //     text: '🔄 Switch Duty',
+        //     emoji: true,
+        //   },
+        //   action_id: 'switch_duty',
+        // },
       ],
     },
     {

@@ -1,11 +1,12 @@
 import type { SlackApp } from 'slack-cloudflare-workers';
 import pingCommandListener from './pingCommandListener';
 import whoAmIListener from './whoAmIListener';
+import adminCommands from './admin';
 
-const register = (app: SlackApp<Env>) => {
+const registerCommands = (app: SlackApp<Env>) => {
   app.command('/ping', pingCommandListener);
   app.command('/whoami', whoAmIListener);
-  return app;
+  adminCommands.register(app);
 };
 
-export default { register };
+export default { register: registerCommands };

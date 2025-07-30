@@ -22,25 +22,66 @@ export const fetchBlocksForEvent = async <B extends Block = AnyHomeTabBlock>(
   eventName: SupportedEventType,
   context: {
     userId?: string;
+    teamId?: string;
     channelId?: string;
   },
 ) => {
   return await apiFetch<B[]>(`/api/slack/blocks/${eventName}`, {
     method: 'POST',
-    body: context,
+    body: {
+      userId: context.userId,
+      teamId: context.teamId,
+      channelId: context.channelId,
+    },
   });
 };
 
-export const requestToUrl = (request: Request) => new URL(request.url);
-
-export const shouldRedirect = (
-  request: Request,
-  redirects: Record<string, string>,
+export const forwardEventToApi = async (
+  eventName: SupportedEventType,
+  context: { userId?: string; teamId?: string },
+  payload: any,
 ) => {
-  return typeof redirects[requestToUrl(request).pathname] !== 'undefined';
+  await apiFetch(`/api/slack/events/${eventName}`, {
+    method: 'POST',
+    body: {
+      userId: context.userId,
+      teamId: context.teamId,
+      payload,
+    },
+  });
 };
 
-export const getRedirect = (
-  request: Request,
-  redirects: Record<string, string>,
-) => Response.redirect(redirects[requestToUrl(request).pathname]);
+export const forwardCommandToApi = async (
+  {
+    command,
+    domain,
+    action,
+    params,
+  }: {
+    command: string;
+    domain: string;
+    action: string;
+    params: string[];
+  },
+  context: { userId?: string; teamId?: string },
+) => {
+  const commandEscaped = command.replaceAll('/', '');
+  try {
+    return {
+      data: await apiFetch(`/api/slack/commands/${commandEscaped}`, {
+        method: 'POST',
+        body: {
+          command,
+          commandEscaped,
+          domain,
+          action,
+          params,
+          context,
+        },
+      }),
+      error: null,
+    };
+  } catch (error) {
+    return { data: null, error };
+  }
+};

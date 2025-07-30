@@ -1,9 +1,116 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "a21de153-a14b-4ecb-8a4d-21ba3696e1f4",
+  "id": "0d6221f3-6a1e-434e-b7a9-f7b6c84dc93c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "users": {
+      "name": "users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "u_sidx": {
+          "name": "u_sidx",
+          "columns": [
+            "id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "users_to_workspaces": {
+      "name": "users_to_workspaces",
+      "columns": {
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "workspaceId": {
+          "name": "workspaceId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "roles": {
+          "name": "roles",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'[]'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "uwuidx": {
+          "name": "uwuidx",
+          "columns": [
+            "userId",
+            "workspaceId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "users_to_workspaces_userId_users_id_fk": {
+          "name": "users_to_workspaces_userId_users_id_fk",
+          "tableFrom": "users_to_workspaces",
+          "tableTo": "users",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "users_to_workspaces_workspaceId_workspaces_id_fk": {
+          "name": "users_to_workspaces_workspaceId_workspaces_id_fk",
+          "tableFrom": "users_to_workspaces",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspaceId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "workspaces": {
       "name": "workspaces",
       "columns": {
@@ -35,6 +142,14 @@
           "notNull": false,
           "autoincrement": false
         },
+        "restricted": {
+          "name": "restricted",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
+        },
         "created_at": {
           "name": "created_at",
           "type": "text",
@@ -43,7 +158,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "w_sidx": {
+          "name": "w_sidx",
+          "columns": [
+            "id"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},

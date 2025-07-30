@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { useValidatedBody } from 'h3-zod';
 import fetchTeamInfo from '~/lib/slack/actions/team/fetchTeamInfo';
+import fetchUserInfo from '~/lib/slack/actions/user/fetchUserInfo';
 
 const installSchema = z.object({
   isEnterpriseInstall: z.boolean(),
@@ -24,6 +25,28 @@ export default defineBotEventHandler(async (event) => {
       installedBy: userId,
     })
     .onConflictDoNothing();
+
+  if (userId) {
+    const user = await fetchUserInfo(userId);
+    await useDrizzle()
+      .insert(tables.users)
+      .values({
+        id: user.id,
+      })
+      .onConflictDoNothing();
+
+    await useDrizzle()
+      .insert(tables.usersToWorkspaces)
+      .values({
+        userId: user.id,
+        workspaceId: teamId,
+        roles: [
+          user.isAdmin ? 'admin' : false,
+          user.isOwner ? 'owner' : false,
+        ].filter(Boolean),
+      })
+      .onConflictDoNothing();
+  }
 
   return { message: 'Workspace created.' };
 });

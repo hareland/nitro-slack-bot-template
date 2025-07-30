@@ -1,10 +1,10 @@
 import { SlackApp } from 'slack-cloudflare-workers';
-import appHomeOpenedListener from './appHomeOpenedListener';
-import appMentionListener from './appMentionedListener';
+import appEvents from './app';
+import teamEvents from './team';
 
-const register = (app: SlackApp<Env>) => {
-  app.event('app_home_opened', appHomeOpenedListener);
-  app.event('app_mention', appMentionListener);
+const registerEvents = (app: SlackApp<Env>) => {
+  appEvents.register(app);
+  teamEvents.register(app);
 };
 
-export default { register };
+export default { register: registerEvents };
