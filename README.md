@@ -7,6 +7,11 @@ Batteries included slack bot template.
 - [`apps/api`](./apps/api) - Handle state++ for the bot.
 - [`apps/bot`](./apps/bot) - The bot itself - can forward events to the api (which is optional, probably gotta edit out those listeners)
 
+## Methods of building
+1. Entire repo: `npx giget@latest gh:hareland/nitro-slack-bot-template`
+2. API Only: `npx giget@latest gh:hareland/nitro-slack-bot-template/app/api`
+2. Bot Only: `npx giget@latest gh:hareland/nitro-slack-bot-template/app/bot`
+
 
 ## Goal
 To have a simple starter kit for building complex slack bots.
