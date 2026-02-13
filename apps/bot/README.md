@@ -13,10 +13,17 @@ Handles the main interactions with Slack
 
 > Defaults are read from .env (see [scrips/generateManifestYaml.mjs](./scripts/generateManifestYaml.mjs))
 
+
+### Totally basic:
+```bash
+pnpm --silent build-manifest > manifest.yaml
+```
+
+### With overrides:
 ```bash
 pnpm --silent build-manifest \
   --api-base="https://some-tunnel.trycloudflare.com"\
   --bot-name="ExampleBot"\
   --bot-display-name="BotDisplayName"\
-> manifest.example.yaml
+> manifest.yaml
 ```
