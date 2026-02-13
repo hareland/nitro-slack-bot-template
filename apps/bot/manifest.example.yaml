@@ -1,56 +1,51 @@
 display_information:
-  name: Duty Schedule
+  name: SomeBotFullName
 features:
   app_home:
     home_tab_enabled: true
     messages_tab_enabled: true
-    messages_tab_read_only_enabled: false
+    messages_tab_read_only_enabled: true
   bot_user:
-    display_name: Duties
+    display_name: DisplayName
     always_online: true
   slash_commands:
     - command: /ping
-      url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
-      description: Pings
-      usage_hint: Test
+      url: https://some-tunnel.trycloudflare.com/slack/events
+      description: Ping
       should_escape: true
     - command: /whoami
-      url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
-      description: Replies with some information about you.
-      usage_hint: /whoami
+      url: https://some-tunnel.trycloudflare.com/slack/events
+      description: Who am I?
       should_escape: true
     - command: /bot-admin
-      url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
-      description: Administration this bot
+      url: https://some-tunnel.trycloudflare.com/slack/events
+      description: Admin commands
       usage_hint: "[users] [list|import] [?: @user]"
       should_escape: true
-
 oauth_config:
   redirect_urls:
-    - https://cornell-attendance-jack-developments.trycloudflare.com/slack/oauth_redirect
+    - https://some-tunnel.trycloudflare.com/slack/oauth_redirect
   scopes:
     user:
       - team:read
       - usergroups:read
     bot:
+      - commands
       - app_mentions:read
+      - users:read
       - chat:write
       - chat:write.public
-      - groups:history
-      - channels:history
-      - channels:join
-      - im:history
-      - im:read
-      - im:write
       - reactions:read
       - reactions:write
-      - commands
-      - users:read
+      - im:read
+      - im:write
+      - im:history
+      - groups:history
+      - groups:read
       - usergroups:read
-      - team:read
 settings:
   event_subscriptions:
-    request_url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
+    request_url: https://some-tunnel.trycloudflare.com/slack/events
     bot_events:
       - app_home_opened
       - app_mention
@@ -63,7 +58,8 @@ settings:
       - team_rename
   interactivity:
     is_enabled: true
-    request_url: https://cornell-attendance-jack-developments.trycloudflare.com/slack/events
+    request_url: https://some-tunnel.trycloudflare.com/slack/events
   org_deploy_enabled: false
   socket_mode_enabled: false
   token_rotation_enabled: false
+

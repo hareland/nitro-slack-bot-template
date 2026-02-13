@@ -8,7 +8,8 @@
   "scripts": {
     "build": "unbuild .",
     "dev": "wrangler dev",
-    "get-scopes": "node ./scripts/yamlScopesToString.js"
+    "get-scopes": "node ./scripts/yamlScopesToString.js",
+    "build-manifest": "node ./scripts/generateManifestYaml.mjs"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250719.0",
     "wrangler": "^4.25.0",
-    "yaml": "^2.8.0"
+    "yaml": "^2.8.0",
+    "dotenv": "^17.3.1"
   }
 }
