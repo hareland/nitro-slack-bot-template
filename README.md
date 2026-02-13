@@ -1,7 +1,7 @@
 # nitro-slack-bot-template
 
 Batteries included slack bot template.
-> **NOTE**: You gotta be a bit savvy to use this since i am too lazy to document this one.
+> **NOTE**: This is generally for internal use, you gotta be a bit savvy to use this since i am too lazy to document this one.
 
 ## Apps
 - [`apps/api`](./apps/api) - Handle state++ for the bot.
