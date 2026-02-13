@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { useValidatedBody, useValidatedParams } from 'h3-zod';
 import { NotFoundError } from '@nitrotool/errors';
 import { useLogger } from '~/utils/logger';
+import { AnyMessageBlock } from 'slack-cloudflare-workers';
+import { botAdmin } from '~/lib/slack/commands/botAdmin';
 
 const routeSchema = z.object({
   command: z.string(),
@@ -28,18 +30,7 @@ export default defineBotEventHandler(async (event) => {
 
   switch (payload.command) {
     case '/bot-admin':
-      return {
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: `*👋 Hello there from the API <@${payload.context.userId}>!*`,
-            },
-          },
-        ],
-      };
-
+      return botAdmin(payload.domain, payload.action, payload.context);
     default:
       throw NotFoundError();
   }
