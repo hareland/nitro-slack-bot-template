@@ -27,3 +27,7 @@ pnpm --silent build-manifest \
   --bot-display-name="BotDisplayName"\
 > manifest.yaml
 ```
+
+
+## Comments
+Please see [package.json](./package.json) and the "Useful files/directories" section for details.
